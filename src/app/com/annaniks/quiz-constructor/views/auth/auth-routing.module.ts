@@ -15,11 +15,11 @@ const authRoutes: Routes = [
             },
             {
                 path: 'login',
-                loadChildren: 'src/app/com/annaniks/quiz-constructor/views/auth/login/login.module#LoginModule'
+                loadChildren: './login/login.module#LoginModule'
             },
             {
                 path: 'registration',
-                loadChildren: 'src/app/com/annaniks/quiz-constructor/views/auth/registration/registration.module#RegistrationModule'
+                loadChildren: './registration/registration.module#RegistrationModule'
             }
         ]
     }

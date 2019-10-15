@@ -6,13 +6,6 @@ const loginRutes: Routes = [
     {
         path: '',
         component: LoginComponent,
-        children: [
-            {
-                path: 'login',
-                loadChildren: 'src/app/com/annaniks/quiz-constructor/views/auth/login/login.module#LoginModule'
-
-            }
-        ]
     }
 ]
 
