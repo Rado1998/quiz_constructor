@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { AuthService } from '../auth.service';
 import { LoginResponseModel, LoginRequestModel } from '../auth.models';
+import { CookieService } from 'ngx-cookie';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'login-view',
@@ -13,7 +15,9 @@ export class LoginComponent implements OnInit {
 
   constructor(
     private _fb: FormBuilder,
-    private _authService: AuthService
+    private _authService: AuthService,
+    private _cookieService: CookieService,
+    private _router: Router
   ) { }
 
   ngOnInit() {
@@ -22,8 +26,8 @@ export class LoginComponent implements OnInit {
 
   private _formBuilder(): void {
     this._loginForm = this._fb.group({
-      username: [null, Validators.required],
-      password: [null, Validators.required]
+      username: ['annaniks', Validators.required],
+      password: ['annaniks', Validators.required]
     })
   }
 
@@ -34,7 +38,8 @@ export class LoginComponent implements OnInit {
         password: this._loginForm.get('password').value
       }
       this._authService.login(sendingData).subscribe((data: LoginResponseModel) => {
-        console.log(data);
+        this._cookieService.put('accessToken', data.token);
+        this._router.navigate(['/questions']);
       })
     }
   }
