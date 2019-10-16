@@ -2,21 +2,22 @@
 import { environment } from '../../../../../environments/environment.prod';
 
 const API_URL = environment.API_URL;
-import { HttpInterceptor, HttpRequest, HttpHandler, HttpEvent, HttpErrorResponse, HttpResponse } from '@angular/common/http';
+import { HttpInterceptor, HttpRequest, HttpHandler, HttpEvent, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs';
-import { tap } from 'rxjs/operators';
+import { CookieService } from 'ngx-cookie';
 
 export class ApiInterceptors implements HttpInterceptor {
 
+  constructor(private _cookieService: CookieService) { }
+
   intercept(req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
-    if (!req.url.includes(API_URL)) {
-      return next.handle(req);
-    }
-    if (!req.headers.has("Content-Type")) {
-      req = req.clone({
-        headers: req.headers.set("Content-type", "aplication/json")
-      })
-    }
-    return next.handle(req).pipe()
+    let headers = new HttpHeaders();
+    headers = headers.append('Content-Type', 'application/json');
+    if (req.url != '/login')
+      headers = headers.append('Authorization', 'Bearer ' + this._cookieService.get('accessToken'))
+    const clonedRequest = req.clone({
+      headers: headers, url: `${API_URL}${req.url}`
+    });
+    return next.handle(clonedRequest)
   }
 }
