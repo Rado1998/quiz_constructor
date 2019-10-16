@@ -13,7 +13,7 @@ export class SlideNavComponent implements OnInit {
     public menuItem: MenuItem[] =
     [
         { icon: "question_answer", title: "Questions", routerLink: "/questions" },
-        { icon: "exit_to_app", title: "Log Out", routerLink: "#" },
+        { icon: "exit_to_app", title: "Log Out", routerLink: "/auth/login" },
     ] 
 
     constructor(public menuService:MenuService) { }
