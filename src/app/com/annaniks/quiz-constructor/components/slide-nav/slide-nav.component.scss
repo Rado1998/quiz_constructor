@@ -1,0 +1,48 @@
+.left_menu {
+    width: 250px;
+    height: calc(100vh - 70px);
+    bottom: 0;
+    z-index: 10;
+    -webkit-transition: left 0.5s !important;
+    box-shadow: 0 13px 26px 0 rgba(0, 0, 0, 0.24);
+    position: fixed;
+    background: #eaeaea;
+    .menu{
+        .menu_item{
+            padding: 15px 15px;
+            background: #4caf50;
+         
+           
+            text-align: center;
+            align-items: center;
+            display: flex;
+            justify-content: space-between;
+            border-bottom: 1px solid #b8b8b8;
+            cursor: pointer;
+            .menu_title{
+                color: #ffffff;
+                font-size: 20px;
+                font-family: 'Roboto', sans-serif;
+            }
+            i{
+                color: #ffffff;
+            }
+         }
+    }
+  
+}
+
+
+.openMenu {
+    left: 0 !important;
+    transition: all 0.5s;
+}
+
+.closeMenu {
+    left: -200px !important;
+    transition: all 0.5s;
+}
+
+.router-link-active{
+    background: #218025 !important;
+}

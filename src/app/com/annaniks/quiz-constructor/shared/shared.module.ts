@@ -3,8 +3,10 @@ import { FormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 import { ApiService } from '../services/api.service';
 
+
 @NgModule({
-    declarations: [],
+    declarations: [
+    ],
     imports: [
         FormsModule,
         CommonModule,
