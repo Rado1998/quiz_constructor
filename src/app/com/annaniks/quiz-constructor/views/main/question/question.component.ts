@@ -1,4 +1,8 @@
 import { Component, OnInit } from '@angular/core';
+import { Observable } from 'rxjs';
+
+import { QuestionService } from './question.service';
+
 
 @Component({
   selector: 'question-view',
@@ -7,9 +11,15 @@ import { Component, OnInit } from '@angular/core';
 })
 export class QuestionComponent implements OnInit {
 
-  constructor() { }
+  response: Observable<any> | any;
+  constructor(private _uestionService: QuestionService) { }
 
   ngOnInit() {
+  }
+  getQuestions() {
+
+    this.response = this._uestionService.gets('answers/').pipe(  )
+      .subscribe(data => console.log(data))
   }
 
 }
