@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { Observable } from 'rxjs';
 
 import { QuestionService } from './question.service';
@@ -9,17 +9,21 @@ import { QuestionService } from './question.service';
   templateUrl: './question.component.html',
   styleUrls: ['./question.component.scss']
 })
-export class QuestionComponent implements OnInit {
+export class QuestionComponent implements OnInit, OnDestroy {
 
-  response: Observable<any> | any;
-  constructor(private _uestionService: QuestionService) { }
+  public questions: any= [];
+  constructor(private _questionService: QuestionService) { }
 
   ngOnInit() {
+    this.getQuestions()
   }
   getQuestions() {
-
-    this.response = this._uestionService.gets('answers/').pipe(  )
-      .subscribe(data => console.log(data))
+    this._questionService.getQuestion('questions')
+      .subscribe(data => {
+        this.questions = data['results']
+      })
   }
+
+  ngOnDestroy(){}
 
 }
