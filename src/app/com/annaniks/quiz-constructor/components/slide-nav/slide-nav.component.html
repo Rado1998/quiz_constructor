@@ -2,7 +2,7 @@
     <div class="left_menu_content">
         <nav class="menu">
             <ul>
-                <li class="menu_item" *ngFor="let item of menuItem" routerLinkActive="router-link-active">
+                <li class="menu_item" *ngFor="let item of menuItem" routerLinkActive="active_link" [routerLink]='item.routerLink'>
                     <p class="menu_title">{{item.title}} </p>
                     <i class="material-icons">
                     {{item.icon}}

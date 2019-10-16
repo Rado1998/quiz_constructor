@@ -1,0 +1,27 @@
+.questions_section{
+    width: 100%;
+
+.question_button{
+    width: 250px;
+       margin: 20px;
+    }
+}
+
+app-question-item{
+    width: 25%;
+}
+
+
+
+@media only screen and (max-width:1100px){
+    app-question-item{
+        width: 50% !important;
+    }
+}
+
+
+@media only screen and (max-width:900px){
+    app-question-item{
+        width: 100% !important;
+    }
+}
