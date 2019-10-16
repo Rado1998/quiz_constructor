@@ -8,11 +8,11 @@ const mainRoutes: Routes = [
         children: [
             {
                 path: '',
-                redirectTo: 'quiz',
+                redirectTo: 'questions',
                 pathMatch: 'full'
             },
             {
-                path: 'quiz',
+                path: 'questions',
                 loadChildren: './question/question.module#QuestionModule'
             }
         ]
