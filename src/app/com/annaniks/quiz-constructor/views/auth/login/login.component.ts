@@ -43,6 +43,7 @@ export class LoginComponent implements OnInit, OnDestroy {
       this._authService.login(sendingData)
         .pipe(takeUntil(this._unsubscribe$))
         .subscribe((data: LoginResponseModel) => {
+          console.log(data);
           this._cookieService.put('accessToken', data.access);
           this._cookieService.put('refreshToken', data.refresh);
           this._router.navigate(['/questions']);

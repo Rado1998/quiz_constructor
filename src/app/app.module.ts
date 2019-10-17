@@ -7,6 +7,7 @@ import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { ApiInterceptor } from './com/annaniks/quiz-constructor/interceptors';
 import { CookieService, CookieModule } from 'ngx-cookie';
 import { GuardService } from './com/annaniks/quiz-constructor/services/guard.service';
+import { AuthGuard } from './com/annaniks/quiz-constructor/services/auth.guard';
 
 @NgModule({
   declarations: [
@@ -26,7 +27,8 @@ import { GuardService } from './com/annaniks/quiz-constructor/services/guard.ser
       multi: true
     },
     CookieService,
-    GuardService
+    GuardService,
+    AuthGuard
   ],
   bootstrap: [AppComponent]
 })

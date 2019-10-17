@@ -1,12 +1,22 @@
+//variables
+$transition-duration: 0.5s;
+
 * {
-  font-family: "Open Sans";
   outline: none;
+}
+body {
+  min-width: 900px;
+  font-family: "Roboto", sans-serif;
 }
 
 .form_group {
   width: 100%;
   &_label {
     width: 100%;
+    color: #3a73b1;
+    font-size: 18px;
+    font-family: "Roboto", sans-serif;
+    font-weight: bold;
   }
   &_input {
     width: 100%;
@@ -16,35 +26,47 @@
     border: 1px solid #ccc;
     border-radius: 4px;
     box-sizing: border-box;
+    box-shadow: 0 4px 6px 0 rgba(0, 0, 0, 0.23);
   }
 }
 
 .button {
-  width: 100%;
-  background-color: #4caf50;
-  color: white;
-  padding: 14px 20px;
-  margin: 8px 0;
+  padding: 15px 60px;
+  margin-top: 8px;
+  margin-bottom: 8px;
   border: none;
   border-radius: 4px;
   cursor: pointer;
+  border: 1px solid #295e96;
+  background: #ffffff;
+  color: #295e96;
+  display: block;
+  font-size: 20px;
+  font-weight: bold;
+  transition: $transition-duration;
   &_label {
     color: inherit;
   }
+  &:hover{
+    color: #ffffff !important;
+    background: #295e96 !important;
+    border-color: #ffffff !important;
+   
+   }
 }
 
-.button:disabled{
+.button:disabled {
   opacity: 0.5;
 }
 
-.container{
+.container {
   width: 75%;
   margin: auto;
 }
-.content{
+.content {
   width: 100%;
   display: flex;
   flex-wrap: wrap;
-  // text-align: center;
-  // align-items: center;
 }
+
+

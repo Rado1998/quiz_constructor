@@ -1,27 +1,33 @@
-.questions_section{
-    width: 100%;
+@import "../../../../../../../assets/scss/global";
 
-.question_button{
-    width: 250px;
-       margin: 20px;
+.questions_section {
+  width: 100%;
+  .question{
+    padding: 20px;
+  
+  .question_button {
+    transition: $transition-duration;
+    &:hover {
+      color: #ffffff !important;
+      background: #295e96 !important;
+      border-color: #ffffff !important;
     }
+  }
+}
 }
 
-app-question-item{
-    width: 25%;
+app-question-item {
+  width: 25%;
 }
 
-
-
-@media only screen and (max-width:1100px){
-    app-question-item{
-        width: 50% !important;
-    }
+@media only screen and (max-width: 1100px) {
+  app-question-item {
+    width: 50% !important;
+  }
 }
 
-
-@media only screen and (max-width:900px){
-    app-question-item{
-        width: 100% !important;
-    }
+@media only screen and (max-width: 900px) {
+  app-question-item {
+    width: 100% !important;
+  }
 }
