@@ -1,31 +1,32 @@
+@import "../../../../../../assets/scss/global";
+
 .left_menu {
     width: 250px;
-    height: calc(100vh - 70px);
-    bottom: 0;
-    z-index: 10;
+    height: 100%;
     -webkit-transition: left 0.5s !important;
     box-shadow: 0 13px 26px 0 rgba(0, 0, 0, 0.24);
     position: fixed;
-    background: #eaeaea;
+    background: #ffffff;
     .menu{
         .menu_item{
             padding: 15px 15px;
-            background: #4caf50;
-         
-           
+            background: #3a73b1;
             text-align: center;
             align-items: center;
             display: flex;
             justify-content: space-between;
-            border-bottom: 1px solid #b8b8b8;
+            border: 1px solid #b8b8b8;
             cursor: pointer;
+            color: #ffffff;
+            transition: $transition-duration;
             .menu_title{
-                color: #ffffff;
                 font-size: 20px;
                 font-family: 'Roboto', sans-serif;
             }
-            i{
-                color: #ffffff;
+            &:hover{
+             border-color: #295e96!important;
+             background: #ffffff !important;
+             color: #295e96 !important;
             }
          }
     }
@@ -44,5 +45,5 @@
 }
 
 .active_link{
-    background: #218025 !important;
+    background: #295e96 !important;
 }
