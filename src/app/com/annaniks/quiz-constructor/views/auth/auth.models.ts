@@ -1,5 +1,6 @@
 export class LoginResponseModel {
-    token: string
+    access: string;
+    refresh: string;
 }
 
 export interface LoginRequestModel {

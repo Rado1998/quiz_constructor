@@ -15,7 +15,7 @@ import { takeUntil } from 'rxjs/operators';
 export class LoginComponent implements OnInit, OnDestroy {
   private _loginForm: FormGroup;
   private _unsubscribe$: Subject<void> = new Subject<void>();
-  
+
   constructor(
     private _fb: FormBuilder,
     private _authService: AuthService,
@@ -43,7 +43,8 @@ export class LoginComponent implements OnInit, OnDestroy {
       this._authService.login(sendingData)
         .pipe(takeUntil(this._unsubscribe$))
         .subscribe((data: LoginResponseModel) => {
-          this._cookieService.put('accessToken', data.token);
+          this._cookieService.put('accessToken', data.access);
+          this._cookieService.put('refreshToken', data.refresh);
           this._router.navigate(['/questions']);
         })
     }
@@ -53,7 +54,7 @@ export class LoginComponent implements OnInit, OnDestroy {
     return this._loginForm;
   }
 
-  
+
   ngOnDestroy() {
     this._unsubscribe$.next();
     this._unsubscribe$.complete();
