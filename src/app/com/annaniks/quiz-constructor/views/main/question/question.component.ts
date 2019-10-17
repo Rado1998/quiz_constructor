@@ -2,7 +2,7 @@ import { Component, OnInit, OnDestroy } from '@angular/core';
 import { Observable, Subject } from 'rxjs';
 import { takeUntil } from 'rxjs/operators';
 import { QuestionService } from './question.service';
-import { IQuestionAnswer } from './questions.models';
+import { IQuestionAnswer } from './question.models';
 import { ServerResponse } from '../../../models/models';
 
 @Component({
