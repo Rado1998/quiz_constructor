@@ -11,7 +11,7 @@ export class AuthGuard implements CanActivate {
     canActivate(): Observable<boolean> | boolean {
         let accessToken = this._cookieService.get('accessToken');
         if (accessToken) {
-
+            return true;
         } else {
             this._router.navigate(['/auth/login'])
             return false
