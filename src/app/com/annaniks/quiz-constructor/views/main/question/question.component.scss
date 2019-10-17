@@ -2,8 +2,10 @@
 
 .questions_section {
   width: 100%;
+  .question{
+    padding: 20px;
+  
   .question_button {
-    margin: 20px;
     transition: $transition-duration;
     &:hover {
       color: #ffffff !important;
@@ -11,6 +13,7 @@
       border-color: #ffffff !important;
     }
   }
+}
 }
 
 app-question-item {
