@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 
 @Component({
   selector: 'question-detail-view',
@@ -7,9 +8,18 @@ import { Component, OnInit } from '@angular/core';
 })
 export class QuestionDetailComponent implements OnInit {
 
+  public questionsDetalisGroup: FormGroup;
+
   constructor() { }
 
   ngOnInit() {
+    this._formBuilder();
   }
 
+  private _formBuilder(): void {
+    this.questionsDetalisGroup = new FormBuilder()
+      .group({
+        question: ["", Validators.required],
+      })
+  }
 }

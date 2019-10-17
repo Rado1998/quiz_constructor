@@ -1,1 +1,31 @@
-<p>quiz-detail works!</p>
+<section dov class="question_detail_section">
+    <div class="container">
+        <div class="question_detail">
+            <div class="question_datails_content">
+                <form class="question_datails_form" [formGroup]="questionsDetalisGroup">
+                    <div class="form_group">
+                        <label class="form_group_label">Question</label>
+                        <textarea class="form_group_input textarea" formControlName="question" type="text">
+                        </textarea>
+
+                    </div>
+                    <button class="button question_datail_button"><span class="label">Add</span></button>
+                    <div class="form_group">
+                        <label class="form_group_label">Answer</label>
+                        <div class="answer_form">
+                            <input class="form_group_input answer_input" type="text">
+                            <button class="button btn_delete_answer"><span class="label"><i class="material-icons">
+                                        delete
+                                    </i></span></button>
+                        </div>
+
+                    </div>
+                    <div class="form_button">
+                        <button class="button btn_save"><span class="label">Save</span></button>
+                    </div>
+
+                </form>
+            </div>
+        </div>
+    </div>
+</section>
