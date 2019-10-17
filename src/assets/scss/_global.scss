@@ -36,3 +36,15 @@
 .button:disabled{
   opacity: 0.5;
 }
+
+.container{
+  width: 75%;
+  margin: auto;
+}
+.content{
+  width: 100%;
+  display: flex;
+  flex-wrap: wrap;
+  // text-align: center;
+  // align-items: center;
+}

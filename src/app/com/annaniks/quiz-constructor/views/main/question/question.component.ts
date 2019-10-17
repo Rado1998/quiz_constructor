@@ -2,7 +2,8 @@ import { Component, OnInit, OnDestroy } from '@angular/core';
 import { Observable, Subject } from 'rxjs';
 import { takeUntil } from 'rxjs/operators';
 import { QuestionService } from './question.service';
-
+import { IQuestionAnswer } from './questions.models';
+import { ServerResponse } from '../../../models/models';
 
 @Component({
   selector: 'question-view',
@@ -11,6 +12,7 @@ import { QuestionService } from './question.service';
 })
 export class QuestionComponent implements OnInit, OnDestroy {
   private _unsubscribe$: Subject<void> = new Subject<void>();
+  public questions: IQuestionAnswer[] = [];
 
   constructor(private _questionService: QuestionService) { }
 
@@ -22,7 +24,9 @@ export class QuestionComponent implements OnInit, OnDestroy {
     this._questionService.getQuestions().pipe(
       takeUntil(this._unsubscribe$)
     )
-      .subscribe(data => console.log(data))
+      .subscribe((data: ServerResponse<IQuestionAnswer[]>) => {
+        this.questions = data.results;
+      })
   }
 
   ngOnDestroy() {
