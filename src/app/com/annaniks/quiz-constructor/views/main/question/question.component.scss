@@ -2,18 +2,20 @@
 
 .questions_section {
   width: 100%;
-  .question{
+  .question {
     padding: 20px;
-  
-  .question_button {
-    transition: $transition-duration;
-    &:hover {
-      color: #ffffff !important;
-      background: #295e96 !important;
-      border-color: #ffffff !important;
+    .question_button {
+      transition: $transition-duration;
+      &:hover {
+        color: #ffffff !important;
+        background: #295e96 !important;
+        border-color: #ffffff !important;
+      }
+    }
+    a {
+      color: transparent;
     }
   }
-}
 }
 
 app-question-item {

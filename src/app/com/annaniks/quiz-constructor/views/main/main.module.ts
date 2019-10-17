@@ -4,17 +4,19 @@ import { MainRoutingModule } from './main-routing.module';
 import { SharedModule } from '../../shared/shared.module';
 import { HeaderComponent, SlideNavComponent } from '../../components';
 import { MenuService } from '../../services/menu.service';
+import { SlideNavPositionDirective } from '../../directives';
 
 @NgModule({
   declarations: [
     MainComponent,
     HeaderComponent,
-    SlideNavComponent
+    SlideNavComponent,
+    SlideNavPositionDirective
   ],
   imports: [
     SharedModule,
     MainRoutingModule,
   ],
-  providers:[MenuService]
+  providers: [MenuService]
 })
 export class MainModule { }
