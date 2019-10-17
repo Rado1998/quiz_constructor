@@ -1,6 +1,9 @@
 * {
-  font-family: "Open Sans";
   outline: none;
+}
+body{
+  min-width: 900px;
+  font-family: "Roboto", sans-serif;
 }
 
 .form_group {
@@ -20,14 +23,17 @@
 }
 
 .button {
-  width: 100%;
-  background-color: #4caf50;
-  color: white;
-  padding: 14px 20px;
+  padding: 15px 60px;
   margin: 8px 0;
   border: none;
   border-radius: 4px;
   cursor: pointer;
+  border: 1px solid #295e96;
+  background: #ffffff;
+  color: #295e96;
+  display: inline-block;
+  font-size: 20px;
+  font-weight: bold;
   &_label {
     color: inherit;
   }
@@ -45,6 +51,6 @@
   width: 100%;
   display: flex;
   flex-wrap: wrap;
-  // text-align: center;
-  // align-items: center;
 }
+
+$transition-duration:0.5s;

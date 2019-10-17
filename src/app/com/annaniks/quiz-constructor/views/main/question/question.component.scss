@@ -1,8 +1,15 @@
+@import "../../../../../../../assets/scss/global";
+
 .questions_section {
   width: 100%;
   .question_button {
-    width: 250px;
     margin: 20px;
+    transition: $transition-duration;
+    &:hover {
+      color: #ffffff !important;
+      background: #295e96 !important;
+      border-color: #ffffff !important;
+    }
   }
 }
 
