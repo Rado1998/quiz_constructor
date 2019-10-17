@@ -1,5 +1,5 @@
 import { Component, OnInit, Input } from "@angular/core";
-import { IQuestionAnswer } from '../../views/main/question/questions.models';
+import { IQuestionAnswer } from '../../views/main/question/question.models';
 
 @Component({
     selector: "app-question-item",
