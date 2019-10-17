@@ -1,12 +1,8 @@
 <section class="questions_section">
     <div class="question">
         <button class="button question_button"><span class="label">Add</span></button>
-            <div class="content">
-                   <app-question-item></app-question-item>
-                   <app-question-item></app-question-item>
-                   <app-question-item></app-question-item>
-                   <app-question-item></app-question-item>
-                   <app-question-item></app-question-item>
-            </div>
+        <div class="content">
+            <app-question-item *ngFor="let question of questions" [question]='question'></app-question-item>
         </div>
+    </div>
 </section>

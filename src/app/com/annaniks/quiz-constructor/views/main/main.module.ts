@@ -10,7 +10,6 @@ import { MenuService } from '../../services/menu.service';
     MainComponent,
     HeaderComponent,
     SlideNavComponent
-
   ],
   imports: [
     SharedModule,

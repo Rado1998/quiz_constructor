@@ -11,4 +11,6 @@ export class AuthService {
     public login(data: LoginRequestModel): Observable<LoginResponseModel> {
         return this._httpClient.post<LoginResponseModel>('api-token-auth', data);
     }
+
+
 }
