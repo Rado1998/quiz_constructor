@@ -1,8 +1,8 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
-import { Observable } from 'rxjs';
 
 import { QuestionService } from './question.service';
-
+import { IQuestionAnswers } from './questions.models';
+import { Subject } from 'rxjs';
 
 @Component({
   selector: 'question-view',
@@ -11,19 +11,24 @@ import { QuestionService } from './question.service';
 })
 export class QuestionComponent implements OnInit, OnDestroy {
 
-  public questions: any= [];
+  destroy$: Subject<boolean> = new Subject<boolean>()
+  public questions: IQuestionAnswers[] = [];
   constructor(private _questionService: QuestionService) { }
 
   ngOnInit() {
     this.getQuestions()
   }
-  getQuestions() {
+  getQuestions(){
     this._questionService.getQuestion('questions')
-      .subscribe(data => {
+      .subscribe((data: IQuestionAnswers) => {
         this.questions = data['results']
+        console.log(this.questions)
       })
   }
 
-  ngOnDestroy(){}
+  ngOnDestroy(){
+    this.destroy$.next(true);
+    this.destroy$.unsubscribe()
+  }
 
 }
