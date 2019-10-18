@@ -40,5 +40,5 @@ export interface EmptyResponse {
 
 export interface QuestionCombinationRequest {
   answers: string;
-  question: string
+  question: string;
 }

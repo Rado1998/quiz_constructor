@@ -24,8 +24,8 @@ export class QuestionService {
         return this._httpClient.get<QuestionResponseModel>(`questions/${questionId}`);
     }
 
-    public setQuestionCombination(body: QuestionCombinationRequest): Observable<any> {
-        return this._httpClient.post('combinations', body);
+    public setQuestionCombination(body: QuestionCombinationRequest): Observable<{answers: string, question: string, id: number, url:string}> {
+        return this._httpClient.post<{answers: string, question: string, id: number, url:string}>('combinations', body);  
     }
 
     public getQuestionsWithParams(page: number, limit: number = 10): Observable<ServerResponse<IQuestionAnswer[]>> {
