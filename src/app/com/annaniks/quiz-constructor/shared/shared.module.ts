@@ -2,6 +2,8 @@ import { NgModule } from '@angular/core';
 import { ReactiveFormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 import { TreeSelectComponent } from '../components';
+import { PaginatorModule } from 'primeng/paginator';
+
 
 
 @NgModule({
@@ -11,11 +13,13 @@ import { TreeSelectComponent } from '../components';
     imports: [
         ReactiveFormsModule,
         CommonModule,
+        PaginatorModule
     ],
     exports: [
         CommonModule,
         TreeSelectComponent,
-        ReactiveFormsModule
+        ReactiveFormsModule,
+        PaginatorModule
     ],
 })
 

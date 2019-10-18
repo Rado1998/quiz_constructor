@@ -29,7 +29,6 @@ export class TreeSelectComponent implements OnInit, OnDestroy, ControlValueAcces
         this.valueControl.valueChanges
             .pipe(takeUntil(this._unsubscribe$))
             .subscribe((value: number) => {
-                console.log(value);
                 this.propagateChange(value);
             })
     }

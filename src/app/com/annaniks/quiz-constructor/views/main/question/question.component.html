@@ -4,7 +4,9 @@
             <button class="button question_button"><span class="label">Add</span></button>
         </a>
         <div class="content">
-            <app-question-item *ngFor="let question of questions" [question]='question' rou></app-question-item>
+            <app-question-item *ngFor="let question of questions" [question]='question'></app-question-item>
         </div>
     </div>
 </section>
+
+<p-paginator [rows]="limit" [totalRecords]="totalRecords" (onPageChange)="paginate($event)"></p-paginator>

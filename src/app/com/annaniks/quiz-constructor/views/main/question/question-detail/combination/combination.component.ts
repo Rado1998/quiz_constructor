@@ -40,7 +40,7 @@ export class CombinationComponent implements OnInit, OnDestroy {
     }
 
     private _getQuestions(): void {
-        this._questionService.getQuestions()
+        this._questionService.getQuestionsWithParams(0,1000000000000)
             .pipe(takeUntil(this._unsubscribe$))
             .subscribe((data: ServerResponse<IQuestionAnswer[]>) => {
                 this._questions = data.results;
