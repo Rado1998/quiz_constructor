@@ -1,8 +1,10 @@
 .tree-select {
+  padding:25px;
   &-content {
     .top {
       display: flex;
       align-items: center;
+      justify-content: space-between;
       .header {
       }
       .arrow {
@@ -12,7 +14,9 @@
     }
     .child-content {
       margin-left: 50px;
-      &-item {
+      mat-radio-button{
+        padding:0.5em;
+        display: block;
       }
     }
   }

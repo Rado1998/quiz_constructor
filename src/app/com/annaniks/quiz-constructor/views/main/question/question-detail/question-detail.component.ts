@@ -47,7 +47,8 @@ export class QuestionDetailComponent implements OnInit, OnDestroy {
 
   private _formBuilder(): void {
     this._questionForm = this._fb.group({
-      question: ["", Validators.required],
+      question: [{ value: null, disabled: !this.isCreate }, Validators.required],
+      isBegin: [{ value: false, disabled: !this.isCreate }, Validators.required],
       answers: this._fb.array([new FormControl(null)])
     })
   }
@@ -75,7 +76,8 @@ export class QuestionDetailComponent implements OnInit, OnDestroy {
 
   private _addQuestion(): Observable<number> {
     let sendingData: QuestionRequestModel = {
-      question: this._questionForm.get('question').value
+      question: this._questionForm.get('question').value,
+      is_begin: this._questionForm.get('isBegin').value
     }
     return this._questionService.addQuestion(sendingData).pipe(
       map((data: QuestionResponseModel) => {
@@ -102,11 +104,12 @@ export class QuestionDetailComponent implements OnInit, OnDestroy {
 
   private _setFormValues(data: QuestionResponseModel): void {
     this._questionForm.patchValue({
-      question: data.question
+      question: data.question,
+      isBegin: data.is_begin
     })
     let controlsArray: AbstractControl[] = [];
     data.question_answer.map((element: QuestionAnswer) => {
-      controlsArray.push(new FormControl(element.answer))
+      controlsArray.push(new FormControl({ value: element.answer, disabled: !this.isCreate }));
     })
     let formArray = this._questionForm.get('answers') as FormArray;
     formArray.controls = controlsArray;

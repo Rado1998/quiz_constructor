@@ -7,10 +7,9 @@
             </i>
         </div>
         <div class="child-content" *ngIf="isOpen">
-            <div class="child-content-item" *ngFor="let child of data?.childrens;let ind=index">
-                <input type="radio" [value]="child?.id" [name]="'value'+index" [formControl]="valueControl" />
-                {{child?.label}}
-            </div>
+            <mat-radio-group aria-label="Select an option" [formControl]="valueControl">
+                <mat-radio-button [value]="child?.id" *ngFor="let child of data?.childrens;let ind=index"> {{child?.label}}</mat-radio-button>
+            </mat-radio-group>
         </div>
     </div>
 </div>

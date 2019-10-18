@@ -59,8 +59,12 @@ body {
   text-decoration: none;
 }
 
-.button:disabled {
-  opacity: 0.5;
+button:disabled {
+  opacity: 0.5 !important;
+}
+
+.button-center{
+  margin:0 auto;
 }
 
 .container {

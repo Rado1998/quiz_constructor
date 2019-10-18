@@ -1,10 +1,13 @@
 <div class="combination_section">
     <div class="combination_section_content">
         <form [formGroup]="combinationForm" (ngSubmit)="save()">
-            <app-tree-select *ngFor="let control of treeSelectControls;let ind=index;" [formControl]="control"
-                [data]="treeSelectData[ind]" [index]="ind">
-            </app-tree-select>
-            <button class="button" type="submit">
+            <div class="questions_container">
+                <app-tree-select *ngFor="let control of treeSelectControls;let ind=index;" [formControl]="control"
+                    [data]="treeSelectData[ind]" [index]="ind">
+                </app-tree-select>
+
+            </div>
+            <button class="button button-center submit-button" type="submit">
                 <span class="label">Save</span>
             </button>
         </form>

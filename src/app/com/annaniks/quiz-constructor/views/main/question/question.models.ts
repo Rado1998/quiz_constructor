@@ -8,11 +8,13 @@ export interface IQuestionAnswer {
 
 export interface QuestionRequestModel {
   question: string;
+  is_begin: boolean
 }
 
 export interface QuestionResponseModel {
   id: number;
   question: string;
+  is_begin: boolean;
   question_answer: QuestionAnswer[];
   question_create: string;
   url: string;

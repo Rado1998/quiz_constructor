@@ -1,13 +1,30 @@
-.combination_section{
-    &_content{
-        display: flex;
-        flex-wrap: wrap;
-        app-tree-select{
-            margin-left:10px;
-            width: 33.3333%;
-            &:first-child{
-                margin-left:0;
-            }
-        }
+.combination_section {
+  &_content {
+    display: flex;
+    flex-wrap: wrap;
+    .questions_container {
+      display: flex;
+      flex-wrap: wrap;
+      app-tree-select {
+        margin-left: 10px;
+        width: 32.3333%;
+      }
     }
+    .submit-button {
+      margin-top: 30px;
+      margin-bottom: 30px;
+    }
+  }
+}
+
+@media only screen and (max-width: 1266px) {
+  app-tree-select {
+    width: 48% !important;
+  }
+}
+
+@media only screen and (max-width: 900px) {
+  app-tree-select {
+    width: 99% !important;
+  }
 }
