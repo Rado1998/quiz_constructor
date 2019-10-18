@@ -1,0 +1,16 @@
+<div class="tree-select">
+    <div class="tree-select-content">
+        <div class="top">
+            <p class="header">{{data?.header}}</p>
+            <i class="material-icons arrow" (click)="onClickOpen()" [ngClass]="(isOpen) ? 'open':'close'">
+                keyboard_arrow_down
+            </i>
+        </div>
+        <div class="child-content" *ngIf="isOpen">
+            <div class="child-content-item" *ngFor="let child of data?.childrens;let ind=index">
+                <input type="radio" [value]="child?.id" [name]="'value'+index" [formControl]="valueControl" />
+                {{child?.label}}
+            </div>
+        </div>
+    </div>
+</div>

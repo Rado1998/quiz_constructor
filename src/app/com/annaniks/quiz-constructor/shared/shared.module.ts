@@ -1,24 +1,26 @@
 import { NgModule } from '@angular/core';
-import { FormsModule } from '@angular/forms';
+import { ReactiveFormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
-
-import {PaginatorModule} from 'primeng/paginator';
+import { TreeSelectComponent } from '../components';
+import { PaginatorModule } from 'primeng/paginator';
 
 
 
 @NgModule({
     declarations: [
+        TreeSelectComponent
     ],
     imports: [
-        FormsModule,
+        ReactiveFormsModule,
         CommonModule,
         PaginatorModule
     ],
     exports: [
         CommonModule,
+        TreeSelectComponent,
+        ReactiveFormsModule,
         PaginatorModule
     ],
-    providers: []
 })
 
 export class SharedModule { }

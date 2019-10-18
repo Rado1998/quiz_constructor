@@ -1,0 +1,13 @@
+.combination_section{
+    &_content{
+        display: flex;
+        flex-wrap: wrap;
+        app-tree-select{
+            margin-left:10px;
+            width: 33.3333%;
+            &:first-child{
+                margin-left:0;
+            }
+        }
+    }
+}

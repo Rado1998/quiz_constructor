@@ -9,6 +9,7 @@ import { ApiInterceptor } from './com/annaniks/quiz-constructor/interceptors';
 import { CookieService, CookieModule } from 'ngx-cookie';
 import { GuardService } from './com/annaniks/quiz-constructor/services/guard.service';
 import { AuthGuard } from './com/annaniks/quiz-constructor/services/auth.guard';
+import { environment } from 'src/environments/environment.prod';
 
 @NgModule({
   declarations: [
@@ -29,7 +30,11 @@ import { AuthGuard } from './com/annaniks/quiz-constructor/services/auth.guard';
     },
     CookieService,
     GuardService,
-    AuthGuard
+    AuthGuard,
+    {
+      provide: 'BASE_URL',
+      useValue: environment.API_URL
+    }
   ],
   bootstrap: [AppComponent]
 })

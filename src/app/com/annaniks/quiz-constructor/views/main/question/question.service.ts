@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpParams } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { ServerResponse } from '../../../models/models';
-import { IQuestionAnswer, QuestionRequestModel, QuestionResponseModel, QuestionAnswerRequest, EmptyResponse } from './question.models';
+import { IQuestionAnswer, QuestionRequestModel, QuestionResponseModel, QuestionAnswerRequest, EmptyResponse, QuestionCombinationRequest } from './question.models';
 
 @Injectable()
 export class QuestionService {
@@ -24,11 +24,14 @@ export class QuestionService {
         return this._httpClient.get<QuestionResponseModel>(`questions/${questionId}`);
     }
 
-    public getQuestionsWithParams(page: number): Observable<ServerResponse<IQuestionAnswer[]>> {
+    public setQuestionCombination(body: QuestionCombinationRequest): Observable<any> {
+        return this._httpClient.post('combinations', body);
+    }
+
+    public getQuestionsWithParams(page: number, limit: number = 10): Observable<ServerResponse<IQuestionAnswer[]>> {
         let params = new HttpParams();
-        params = params.set('offset', String(10*page));
-        params.set('limit', '10')
-        console.log(params)
+        params = params.set('offset', String(limit * page));
+        params = params.set('limit', String(limit));
         return this._httpClient.get<ServerResponse<IQuestionAnswer[]>>('questions', { params: params });
     }
 }

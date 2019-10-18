@@ -13,43 +13,33 @@ import { ServerResponse } from '../../../models/models';
 export class QuestionComponent implements OnInit, OnDestroy {
   private _unsubscribe$: Subject<void> = new Subject<void>();
   public questions: IQuestionAnswer[] = [];
-  public totalRecords: number = null;
-  public page: number = null
+  public totalRecords: number = 0;
+  public page: number = 0
+  public limit: number = 10;
 
   constructor(private _questionService: QuestionService) { }
 
   ngOnInit() {
-    this._getQuestions();
+    this._getQuestionsWithParams(this.page);
   }
 
-  private _getQuestions(): void {
-    this._questionService.getQuestions().pipe(
-      takeUntil(this._unsubscribe$)
-    )
-      .subscribe((data: ServerResponse<IQuestionAnswer[]>) => {
-        this.questions = data.results;
-        this.totalRecords = data.count
-      })
-  }
-
-  private _getQuestionsWithParams(page) {
+  private _getQuestionsWithParams(page: number): void {
     this._questionService.getQuestionsWithParams(page).pipe(
       takeUntil(this._unsubscribe$)
-    ).subscribe(data => {
-      console.log(8888888888,data);
-      
-      this.questions = data.results
+    ).subscribe((data: ServerResponse<IQuestionAnswer[]>) => {
+      this.questions = data.results;
+      this.totalRecords = data.count;
     })
   }
 
   public paginate(event: { page: number }) {
     let page = event.page;
-    this._getQuestionsWithParams(page)
+    this._getQuestionsWithParams(page);
   }
 
   ngOnDestroy() {
     this._unsubscribe$.next();
     this._unsubscribe$.complete();
   }
-  
+
 }
