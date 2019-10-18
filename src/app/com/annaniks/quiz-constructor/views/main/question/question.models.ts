@@ -2,7 +2,8 @@ export interface IQuestionAnswer {
   url: string;
   id: number,
   answer: string,
-  question: string
+  question: string,
+  question_answer: QuestionAnswer[]
 }
 
 export interface QuestionRequestModel {
@@ -35,4 +36,9 @@ export interface Answer {
 
 export interface EmptyResponse {
   message: string
+}
+
+export interface QuestionCombinationRequest {
+  answers: string;
+  question: string
 }

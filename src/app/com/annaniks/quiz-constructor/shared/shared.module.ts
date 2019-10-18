@@ -1,19 +1,22 @@
 import { NgModule } from '@angular/core';
-import { FormsModule } from '@angular/forms';
+import { ReactiveFormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
+import { TreeSelectComponent } from '../components';
 
 
 @NgModule({
     declarations: [
+        TreeSelectComponent
     ],
     imports: [
-        FormsModule,
+        ReactiveFormsModule,
         CommonModule,
     ],
     exports: [
-        CommonModule
+        CommonModule,
+        TreeSelectComponent,
+        ReactiveFormsModule
     ],
-    providers: []
 })
 
 export class SharedModule { }

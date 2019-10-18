@@ -13,9 +13,9 @@ import { QuestionRequestModel, QuestionResponseModel, QuestionAnswerRequest, IQu
 })
 export class QuestionDetailComponent implements OnInit, OnDestroy {
   private _questionForm: FormGroup;
-  private _isCreate: boolean = false;
   private _unsubscribe$: Subject<void> = new Subject<void>();
   private _questionId: string;
+  public isCreate: boolean = false;
 
   constructor(
     private _fb: FormBuilder,
@@ -35,10 +35,10 @@ export class QuestionDetailComponent implements OnInit, OnDestroy {
       .pipe(takeUntil(this._unsubscribe$))
       .subscribe((params: { id: string }) => {
         if (params.id == 'add') {
-          this._isCreate = true;
+          this.isCreate = true;
         }
         else {
-          this._isCreate = false;
+          this.isCreate = false;
           this._questionId = params.id;
           this._getQuestionById(+this._questionId)
         }
@@ -48,7 +48,7 @@ export class QuestionDetailComponent implements OnInit, OnDestroy {
   private _formBuilder(): void {
     this._questionForm = this._fb.group({
       question: ["", Validators.required],
-      answers: this._fb.array([])
+      answers: this._fb.array([new FormControl(null)])
     })
   }
 
@@ -65,7 +65,7 @@ export class QuestionDetailComponent implements OnInit, OnDestroy {
 
   public save(): void {
     if (this._questionForm.valid) {
-      if (this._isCreate) {
+      if (this.isCreate) {
         this._addQuestion().subscribe((questionId: number) => {
           this._addAnswers(questionId);
         });

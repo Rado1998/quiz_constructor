@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { ServerResponse } from '../../../models/models';
-import { IQuestionAnswer, QuestionRequestModel, QuestionResponseModel, QuestionAnswerRequest, EmptyResponse } from './question.models';
+import { IQuestionAnswer, QuestionRequestModel, QuestionResponseModel, QuestionAnswerRequest, EmptyResponse, QuestionCombinationRequest } from './question.models';
 
 @Injectable()
 export class QuestionService {
@@ -22,5 +22,9 @@ export class QuestionService {
 
     public getQuestionById(questionId: number): Observable<QuestionResponseModel> {
         return this._httpClient.get<QuestionResponseModel>(`questions/${questionId}`);
+    }
+
+    public setQuestionCombination(body: QuestionCombinationRequest): Observable<any> {
+        return this._httpClient.post('combinations', body);
     }
 }

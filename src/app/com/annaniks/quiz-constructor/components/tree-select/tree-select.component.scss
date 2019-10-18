@@ -1,0 +1,27 @@
+.tree-select {
+  &-content {
+    .top {
+      display: flex;
+      align-items: center;
+      .header {
+      }
+      .arrow {
+        cursor: pointer;
+        transition: all 0.5s;
+      }
+    }
+    .child-content {
+      margin-left: 50px;
+      &-item {
+      }
+    }
+  }
+}
+
+.open {
+  transform: rotate(180deg);
+}
+
+.close {
+  transform: rotate(0);
+}
