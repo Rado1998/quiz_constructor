@@ -10,3 +10,7 @@ export interface ServerResponse<T> {
     previous: null;
     results: T
 }
+
+export interface GetTokenResponse {
+    access: string
+}
