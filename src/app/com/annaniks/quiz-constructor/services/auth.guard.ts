@@ -4,7 +4,7 @@ import { GuardService } from './guard.service';
 
 export class AuthGuard implements CanActivate {
     constructor(
-        public _guardService: GuardService
+        private _guardService: GuardService
     ) { }
 
     canActivate(): Observable<boolean> | boolean | Promise<boolean> {
