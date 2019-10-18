@@ -3,7 +3,8 @@ import { Routes, RouterModule } from '@angular/router';
 import { QuestionDetailComponent } from './question-detail.component';
 
 const questionDetailsRoutes: Routes = [
-    { path: '', component: QuestionDetailComponent }
+    { path: '', component: QuestionDetailComponent },
+    { path: 'combination', loadChildren: './combination/combination.module#CombinationModule' }
 ]
 
 @NgModule({
