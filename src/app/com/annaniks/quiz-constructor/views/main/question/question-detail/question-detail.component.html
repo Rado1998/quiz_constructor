@@ -10,6 +10,7 @@
                     </div>
                     <button type="button" class="button question_datail_button" (click)="onClickAdd()"><span
                             class="label">Add</span></button>
+                            <div class="answer_form_content">
                     <div class="form_group" *ngFor="let answer of answersControl;let ind=index">
                         <label class="form_group_label">Answer {{ind+1}}</label>
                         <div class="answer_form">
@@ -23,6 +24,7 @@
                             </button>
                         </div>
                     </div>
+                </div>
                     <div class="form_button">
                         <button class="button btn_save" type="submit"><span class="label">Save</span></button>
                     </div>
