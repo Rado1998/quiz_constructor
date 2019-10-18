@@ -2,6 +2,9 @@ import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 
+import {PaginatorModule} from 'primeng/paginator';
+
+
 
 @NgModule({
     declarations: [
@@ -9,9 +12,11 @@ import { CommonModule } from '@angular/common';
     imports: [
         FormsModule,
         CommonModule,
+        PaginatorModule
     ],
     exports: [
-        CommonModule
+        CommonModule,
+        PaginatorModule
     ],
     providers: []
 })

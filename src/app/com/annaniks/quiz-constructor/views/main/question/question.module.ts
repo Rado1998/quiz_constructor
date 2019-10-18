@@ -8,7 +8,7 @@ import { QuestionItemComponent } from '../../../components';
 @NgModule({
   declarations: [
     QuestionComponent,
-    QuestionItemComponent
+    QuestionItemComponent,
   ],
   imports: [
     SharedModule,

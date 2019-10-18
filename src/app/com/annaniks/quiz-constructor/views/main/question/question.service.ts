@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpParams } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { ServerResponse } from '../../../models/models';
 import { IQuestionAnswer, QuestionRequestModel, QuestionResponseModel, QuestionAnswerRequest, EmptyResponse } from './question.models';
@@ -22,5 +22,13 @@ export class QuestionService {
 
     public getQuestionById(questionId: number): Observable<QuestionResponseModel> {
         return this._httpClient.get<QuestionResponseModel>(`questions/${questionId}`);
+    }
+
+    public getQuestionsWithParams(page: number): Observable<ServerResponse<IQuestionAnswer[]>> {
+        let params = new HttpParams();
+        params = params.set('offset', String(10*page));
+        params.set('limit', '10')
+        console.log(params)
+        return this._httpClient.get<ServerResponse<IQuestionAnswer[]>>('questions', { params: params });
     }
 }
