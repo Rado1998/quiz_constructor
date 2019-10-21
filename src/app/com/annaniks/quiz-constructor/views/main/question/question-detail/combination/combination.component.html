@@ -1,6 +1,6 @@
 <div class="combination_section">
     <div class="combination_section_content">
-        <form [formGroup]="combinationForm" (ngSubmit)="save()">
+        <form [formGroup]="combinationForm" class="full-width" (ngSubmit)="save()">
             <div class="questions_container">
                 <app-tree-select *ngFor="let control of treeSelectControls;let ind=index;" [formControl]="control"
                     [data]="treeSelectData[ind]" [index]="ind">

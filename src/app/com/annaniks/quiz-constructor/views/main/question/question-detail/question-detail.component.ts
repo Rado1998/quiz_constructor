@@ -4,7 +4,8 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { Subject, Observable } from 'rxjs';
 import { takeUntil, map } from 'rxjs/operators';
 import { QuestionService } from '../question.service';
-import { QuestionRequestModel, QuestionResponseModel, QuestionAnswerRequest, IQuestionAnswer, QuestionAnswer } from '../question.models';
+import { QuestionRequestModel, QuestionResponseModel, QuestionAnswerRequest, QuestionAnswer } from '../question.models';
+import { LoadingService } from '../../../../services';
 
 @Component({
   selector: 'question-detail-view',
@@ -21,7 +22,8 @@ export class QuestionDetailComponent implements OnInit, OnDestroy {
     private _fb: FormBuilder,
     private _activatedRoute: ActivatedRoute,
     private _questionService: QuestionService,
-    private _router: Router
+    private _router: Router,
+    private _loadingService: LoadingService
   ) {
     this._checkRouteParams();
   }
@@ -54,9 +56,15 @@ export class QuestionDetailComponent implements OnInit, OnDestroy {
   }
 
   private _getQuestionById(questionId: number) {
-    this._questionService.getQuestionById(questionId).subscribe((data: QuestionResponseModel) => {
-      this._setFormValues(data);
-    })
+    this._loadingService.setLoadingState(true);
+    this._questionService.getQuestionById(questionId).subscribe(
+      (data: QuestionResponseModel) => {
+        this._setFormValues(data);
+      },
+      (err) => { },
+      () => {
+        this._loadingService.setLoadingState(false);
+      })
   }
 
   public onClickAdd(): void {
@@ -67,8 +75,11 @@ export class QuestionDetailComponent implements OnInit, OnDestroy {
   public save(): void {
     if (this._questionForm.valid) {
       if (this.isCreate) {
+        this._loadingService.setLoadingState(true);
         this._addQuestion().subscribe((questionId: number) => {
           this._addAnswers(questionId);
+        }, (err) => {
+          this._loadingService.setLoadingState(false);
         });
       }
     }
@@ -97,9 +108,13 @@ export class QuestionDetailComponent implements OnInit, OnDestroy {
       questionAnswers.push({ answer: element.value });
     })
     sendingData.question_answer = questionAnswers;
-    this._questionService.addAnswerQuestion(sendingData).subscribe(() => {
-      this._router.navigate(['/questions']);
-    })
+    this._questionService.addAnswerQuestion(sendingData).subscribe(
+      () => {
+        this._router.navigate(['/questions']);
+      }, (err) => {},
+      () => {
+        this._loadingService.setLoadingState(false);
+      })
   }
 
   private _setFormValues(data: QuestionResponseModel): void {

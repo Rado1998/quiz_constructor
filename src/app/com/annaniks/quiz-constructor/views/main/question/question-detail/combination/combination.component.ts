@@ -7,6 +7,7 @@ import { ServerResponse } from '../../../../../models/models';
 import { ITreeSelectData, ITreeSelectChild } from '../../../../../components/tree-select/tree-select.models';
 import { FormGroup, FormBuilder, AbstractControl, FormArray, FormControl } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
+import { LoadingService } from 'src/app/com/annaniks/quiz-constructor/services';
 
 @Component({
     selector: 'combination-view',
@@ -24,7 +25,8 @@ export class CombinationComponent implements OnInit, OnDestroy {
         private _fb: FormBuilder,
         @Inject('BASE_URL') private _baseUrl: string,
         private _activatedRoute: ActivatedRoute,
-        private _router: Router
+        private _router: Router,
+        private _loadingService: LoadingService
     ) { }
 
     ngOnInit() {
@@ -40,12 +42,17 @@ export class CombinationComponent implements OnInit, OnDestroy {
     }
 
     private _getQuestions(): void {
-        this._questionService.getQuestionsWithParams(0,1000000000000)
+        this._loadingService.setLoadingState(true);
+        this._questionService.getQuestionsWithParams(0, 1000000000000)
             .pipe(takeUntil(this._unsubscribe$))
-            .subscribe((data: ServerResponse<IQuestionAnswer[]>) => {
-                this._questions = data.results;
-                this._setTreeSelectData(this._questions);
-            })
+            .subscribe(
+                (data: ServerResponse<IQuestionAnswer[]>) => {
+                    this._questions = data.results;
+                    this._setTreeSelectData(this._questions);
+                }, (err) => { },
+                () => {
+                    this._loadingService.setLoadingState(false);
+                })
     }
 
     private _setTreeSelectData(data: IQuestionAnswer[]): void {
@@ -68,6 +75,7 @@ export class CombinationComponent implements OnInit, OnDestroy {
 
     public save(): void {
         if (this._combinationForm.valid) {
+            this._loadingService.setLoadingState(true);
             let selectedAnswers = this._getSelectedAnswers();
             let sendingData: QuestionCombinationRequest = {
                 answers: selectedAnswers,
@@ -75,9 +83,14 @@ export class CombinationComponent implements OnInit, OnDestroy {
             }
             this._questionService.setQuestionCombination(sendingData)
                 .pipe(takeUntil(this._unsubscribe$))
-                .subscribe((response) => {
-                    this._router.navigate(['/questions']);
-                })
+                .subscribe(
+                    (response) => {
+                        this._router.navigate(['/questions']);
+                    },
+                    (err) => { },
+                    () => {
+                        this._loadingService.setLoadingState(false);
+                    })
         }
     }
 
