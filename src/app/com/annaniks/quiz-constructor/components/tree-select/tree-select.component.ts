@@ -37,7 +37,7 @@ export class TreeSelectComponent implements OnInit, OnDestroy, ControlValueAcces
         this.isOpen = !this.isOpen;
     }
 
-    public propagateChange = (_: any) => { };
+    public propagateChange = (_: number) => { };
 
     public registerOnChange(fn) {
         this.propagateChange = fn;

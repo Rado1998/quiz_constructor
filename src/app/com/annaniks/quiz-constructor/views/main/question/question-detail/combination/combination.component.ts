@@ -1,6 +1,6 @@
 import { Component, OnInit, OnDestroy, Inject } from '@angular/core';
 import { QuestionService } from '../../question.service';
-import { IQuestionAnswer, QuestionCombinationRequest } from '../../question.models';
+import { IQuestionAnswer, QuestionCombinationRequest, QuestionAnswer } from '../../question.models';
 import { Subject } from 'rxjs';
 import { takeUntil } from 'rxjs/operators';
 import { ServerResponse } from '../../../../../models/models';
@@ -43,11 +43,16 @@ export class CombinationComponent implements OnInit, OnDestroy {
 
     private _getQuestions(): void {
         this._loadingService.setLoadingState(true);
-        this._questionService.getQuestionsWithParams(0, 1000000000000)
+        this._questionService.getQuestionsWithParams({ page: 0, limit: 1000000000000 })
             .pipe(takeUntil(this._unsubscribe$))
             .subscribe(
                 (data: ServerResponse<IQuestionAnswer[]>) => {
                     this._questions = data.results;
+                    this._questions.map((element: IQuestionAnswer, index: number) => {
+                        if (element.id.toString() === this._questionId) {
+                            this._questions.splice(index, 1);
+                        }
+                    })
                     this._setTreeSelectData(this._questions);
                 }, (err) => { },
                 () => {
@@ -62,7 +67,7 @@ export class CombinationComponent implements OnInit, OnDestroy {
             controlArr.push(new FormControl(null));
             let treeSelectItem: ITreeSelectData = {} as ITreeSelectData;
             treeSelectItem.header = element.question;
-            treeSelectItem.childrens = element.question_answer.map((el) => {
+            treeSelectItem.childrens = element.question_answer.map((el: QuestionAnswer) => {
                 let treeSelectChild: ITreeSelectChild = {} as ITreeSelectChild;
                 treeSelectChild.label = el.answer;
                 treeSelectChild.id = el.id;
