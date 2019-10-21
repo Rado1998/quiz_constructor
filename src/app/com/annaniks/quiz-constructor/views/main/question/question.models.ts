@@ -42,5 +42,12 @@ export interface EmptyResponse {
 
 export interface QuestionCombinationRequest {
   answers: string;
-  question: string
+  question: string;
+}
+
+export interface QuestionCombinationResponse {
+  answers: string;
+  question: string;
+  id: number;
+  url: string
 }
