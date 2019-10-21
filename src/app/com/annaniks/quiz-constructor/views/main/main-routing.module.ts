@@ -15,10 +15,6 @@ const mainRoutes: Routes = [
                 path: 'questions',
                 loadChildren: './question/question.module#QuestionModule'
             },
-            {
-                path: 'questions-test',
-                loadChildren: './question-test/question-test.module#QuestionTestModule'
-            }
         ]
     }
 ];

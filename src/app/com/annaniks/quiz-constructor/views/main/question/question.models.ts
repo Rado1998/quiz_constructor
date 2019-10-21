@@ -1,9 +1,10 @@
 export interface IQuestionAnswer {
+  id: number;
+  question: string;
+  is_begin: boolean;
+  question_answer: QuestionAnswer[];
+  question_create: string;
   url: string;
-  id: number,
-  answer: string,
-  question: string,
-  question_answer: QuestionAnswer[]
 }
 
 export interface QuestionRequestModel {
@@ -18,6 +19,7 @@ export interface QuestionResponseModel {
   question_answer: QuestionAnswer[];
   question_create: string;
   url: string;
+
 }
 
 export interface QuestionAnswer {
@@ -46,8 +48,10 @@ export interface QuestionCombinationRequest {
 }
 
 export interface QuestionCombinationResponse {
-  answers: string;
-  question: string;
   id: number;
-  url: string
+  question: string;
+  is_begin: boolean;
+  question_answer: QuestionAnswer[];
+  question_create: string;
+  url: string;
 }

@@ -1,0 +1,13 @@
+<section class="question_detail_item_section">
+    <div class="container">
+        <form [formGroup]="questionTestForm" (ngSubmit)="saveAnswer()">
+            <div>
+                <app-question-detail-item *ngFor="let item of questionControls;let ind=index"
+                    [question]="questions[ind]" [questionIndex]="ind" [formControl]="item.get('selectedValue')">
+                </app-question-detail-item>
+            </div>
+            <button type="submit" class="button button-center"
+                *ngIf="questionControls && questionControls.length>0">SAVE</button>
+        </form>
+    </div>
+</section>

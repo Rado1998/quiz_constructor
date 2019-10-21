@@ -1,34 +1,26 @@
-<section class="question_detail_item_section">
-    <div class="container">
-        <div class="question_detail_item">
-            <div class="question_datails_item_content">
-                <form class="question_datails_item_form" [formGroup]="testForm">
-                    <div class="form_group">
-                        <label class="form_group_label">Question</label>
-                        <textarea class="form_group_input textarea" formControlName="question" type="text">
+<div class="question_detail_item">
+    <div class="question_datails_item_content">
+        <div class="question_datails_item_form">
+            <div class="form_group">
+                <label class="form_group_label">Question</label>
+                <textarea class="form_group_input textarea" disabled [value]="question?.question" type="text">
                         </textarea>
-                    </div>
-                    <div class="answer_form_content">
-                        <div class="form_group" >
-                            <label class="form_group_label">Answer</label>
-                            <div class="answer_form">
-                                <input class="form_group_input answer_input" type="text" [formControl]="answer">
-                             <div class="radio_button">
-                                <mat-radio-button class="example-radio-button"  [value]="season">
-                                  </mat-radio-button>
-                              
-                             </div>
-                                   
+            </div>
+            <mat-radio-group aria-label="Select an option" [formControl]="selectedValue">
+                <div class="answer_form_content">
+                    <div class="form_group">
+                        <label class="form_group_label">Answer</label>
+                        <div class="answer_form" *ngFor="let item of question?.question_answer">
+                            <input class="form_group_input answer_input" type="text" [value]="item?.answer" disabled>
+                            <div class="radio_button">
+                                <mat-radio-button class="example-radio-button" [name]="'question'+questionIndex"
+                                    [value]="item?.id">
+                                </mat-radio-button>
                             </div>
                         </div>
-                        
                     </div>
-                    <div class="form_button" >
-                        <button class="button btn_save" type="submit"><span class="label">Save</span></button>
-                    </div>
-                </form>
-            </div>
+                </div>
+            </mat-radio-group>
         </div>
     </div>
-</section>
-
+</div>

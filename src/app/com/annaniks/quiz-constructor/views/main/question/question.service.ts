@@ -1,12 +1,17 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpParams } from '@angular/common/http';
-import { Observable } from 'rxjs';
+import { Observable, Subject } from 'rxjs';
 import { ServerResponse } from '../../../models/models';
 import { IQuestionAnswer, QuestionRequestModel, QuestionResponseModel, QuestionAnswerRequest, EmptyResponse, QuestionCombinationRequest, QuestionCombinationResponse } from './question.models';
 
 @Injectable()
 export class QuestionService {
-    constructor(private _httpClient: HttpClient) { }
+    private _disableQuestion: Subject<boolean> = new Subject<boolean>();
+    private _disableQuestionState: Observable<boolean>;
+
+    constructor(private _httpClient: HttpClient) {
+        this._disableQuestionState = this._disableQuestion.asObservable();
+    }
 
     public getQuestions(): Observable<ServerResponse<IQuestionAnswer[]>> {
         return this._httpClient.get<ServerResponse<IQuestionAnswer[]>>('questions');
@@ -28,10 +33,23 @@ export class QuestionService {
         return this._httpClient.post<QuestionCombinationResponse>('combinations', body);
     }
 
-    public getQuestionsWithParams(page: number, limit: number = 10): Observable<ServerResponse<IQuestionAnswer[]>> {
-        let params = new HttpParams();
-        params = params.set('offset', String(limit * page));
-        params = params.set('limit', String(limit));
-        return this._httpClient.get<ServerResponse<IQuestionAnswer[]>>('questions', { params: params });
+    public getQuestionsWithParams(params: object): Observable<ServerResponse<IQuestionAnswer[]>> {
+        let requestParams = new HttpParams();
+        Object.keys(params).map((element) => {
+            requestParams = requestParams.set(element, String(params[element]));
+        })
+        return this._httpClient.get<ServerResponse<IQuestionAnswer[]>>('questions', { params: requestParams });
+    }
+
+    public getNextQuestion(answers: string, questions: string): Observable<any> {
+        return this._httpClient.get(`next-question/${answers}/${questions}`);
+    }
+
+    public setDisableQuestionState(isDisabled: boolean): void {
+        this._disableQuestion.next(isDisabled);
+    }
+
+    public getDisableQuestionState(): Observable<boolean> {
+        return this._disableQuestionState;
     }
 }

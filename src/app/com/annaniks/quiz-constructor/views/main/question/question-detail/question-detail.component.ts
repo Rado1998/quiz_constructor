@@ -111,7 +111,7 @@ export class QuestionDetailComponent implements OnInit, OnDestroy {
     this._questionService.addAnswerQuestion(sendingData).subscribe(
       () => {
         this._router.navigate(['/questions']);
-      }, (err) => {},
+      }, (err) => { },
       () => {
         this._loadingService.setLoadingState(false);
       })

@@ -29,7 +29,7 @@ export class QuestionComponent implements OnInit, OnDestroy {
 
   private _getQuestionsWithParams(page: number): void {
     this._loadingService.setLoadingState(true);
-    this._questionService.getQuestionsWithParams(page).pipe(
+    this._questionService.getQuestionsWithParams({ offset: page, limit: this.limit }).pipe(
       takeUntil(this._unsubscribe$)
     ).subscribe((data: ServerResponse<IQuestionAnswer[]>) => {
       this.questions = data.results;
