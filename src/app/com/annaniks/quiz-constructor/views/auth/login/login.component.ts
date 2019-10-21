@@ -15,6 +15,7 @@ import { takeUntil } from 'rxjs/operators';
 export class LoginComponent implements OnInit, OnDestroy {
   private _loginForm: FormGroup;
   private _unsubscribe$: Subject<void> = new Subject<void>();
+  public show:boolean=false;
 
   constructor(
     private _fb: FormBuilder,
@@ -62,4 +63,7 @@ export class LoginComponent implements OnInit, OnDestroy {
   }
 
 
+  public showPassword():void{
+    this.show =! this.show;
+  }
 }

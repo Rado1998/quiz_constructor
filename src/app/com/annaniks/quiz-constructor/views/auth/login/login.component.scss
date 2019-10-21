@@ -14,5 +14,13 @@
       margin-left: auto;
       margin-right: auto;
     }
+    .show_password{
+      display: flex;
+      justify-content: space-between;
+      .form_group_input{
+      box-shadow: 0 4px 6px 0 rgba(0, 0, 0, 0.23);
+    }
+  }
   }
 }
+
