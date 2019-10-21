@@ -12,10 +12,10 @@ import { Router } from '@angular/router';
 
 export class SlideNavComponent implements OnInit {
 
-    public menuItem: MenuItem[] =
-        [
-            { icon: "question_answer", title: "Questions", routerLink: "/questions" },
-        ]
+    public menuItem: MenuItem[] = [
+        { icon: "question_answer", title: "Questions", routerLink: "/questions" },
+        { icon: "question_answer", title: "Question Test", routerLink: "/questions-test" },
+    ]
 
     constructor(public menuService: MenuService, private _cookieService: CookieService, private _router: Router) { }
 
@@ -24,7 +24,6 @@ export class SlideNavComponent implements OnInit {
     public logOut(): void {
         this._cookieService.remove('accessToken');
         this._router.navigate(['/auth/login']);
-
     }
 
 }
