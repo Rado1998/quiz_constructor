@@ -5,18 +5,20 @@ import { TreeSelectComponent } from '../components';
 import { PaginatorModule } from 'primeng/paginator';
 import { MatRadioModule } from '@angular/material/radio';
 import { MatCheckboxModule } from '@angular/material/checkbox';
+import { ProgressSpinnerModule } from 'primeng/progressspinner';
 
 
 @NgModule({
     declarations: [
-        TreeSelectComponent
+        TreeSelectComponent,
     ],
     imports: [
         ReactiveFormsModule,
         CommonModule,
         PaginatorModule,
         MatRadioModule,
-        MatCheckboxModule
+        MatCheckboxModule,
+        ProgressSpinnerModule
     ],
     exports: [
         CommonModule,
@@ -24,7 +26,8 @@ import { MatCheckboxModule } from '@angular/material/checkbox';
         ReactiveFormsModule,
         PaginatorModule,
         MatRadioModule,
-        MatCheckboxModule
+        MatCheckboxModule,
+        ProgressSpinnerModule
     ],
 })
 

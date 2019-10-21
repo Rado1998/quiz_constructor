@@ -7,20 +7,24 @@ import { AppComponent } from './app.component';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { ApiInterceptor } from './com/annaniks/quiz-constructor/interceptors';
 import { CookieService, CookieModule } from 'ngx-cookie';
-import { GuardService } from './com/annaniks/quiz-constructor/services/guard.service';
 import { AuthGuard } from './com/annaniks/quiz-constructor/services/auth.guard';
 import { environment } from './../environments/environment.prod';
+import { LoadingComponent } from './com/annaniks/quiz-constructor/components';
+import { GuardService, LoadingService } from './com/annaniks/quiz-constructor/services';
+import { SharedModule } from './com/annaniks/quiz-constructor/shared/shared.module';
 
 @NgModule({
   declarations: [
     AppComponent,
+    LoadingComponent
   ],
   imports: [
     BrowserModule,
     BrowserAnimationsModule,
     AppRoutingModule,
     CookieModule.forRoot(),
-    HttpClientModule
+    HttpClientModule,
+    SharedModule
   ],
   providers: [
     {
@@ -30,6 +34,7 @@ import { environment } from './../environments/environment.prod';
     },
     CookieService,
     GuardService,
+    LoadingService,
     AuthGuard,
     {
       provide: 'BASE_URL',
