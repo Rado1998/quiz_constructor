@@ -13,8 +13,11 @@ export class SlideNavPositionDirective implements OnInit {
 
     private _checkScrollPosition(): void {
         document.addEventListener('scroll', () => {
-            let position = 0;
-            if (window.scrollY < 70) {
+            let position: number = 0;
+            var htmlElement: HTMLHtmlElement = document.querySelector("html");
+            const classList: string[] = Array.from(htmlElement.classList);
+            const index: number = classList.indexOf("cdk-global-scrollblock")
+            if (window.scrollY < 70 && index == -1) {
                 position = 70 - window.scrollY;
             }
             else {
